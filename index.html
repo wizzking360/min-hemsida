@@ -3,197 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Ahmed - Portfolio & CV</title>
+    <title>wizzking360 | Portfolio</title>
     <style>
         :root {
-            --primary-green: #2d5a27;
-            --dark-green: #1a3a17;
-            --accent-red: #c62828;
-            --soft-yellow: #fdf5e6;
-            --gold: #fbc02d;
-            --text-dark: #2c3e50;
-            --bg-light: #f8f9fa;
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --bg-color: #0f172a;
+            --text-color: #f1f5f9;
+            --card-bg: #1e293b;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Garamond', Georgia, serif;
-            background: linear-gradient(135deg, var(--soft-yellow) 0%, #fff 100%);
-            color: var(--text-dark);
-            min-height: 100vh;
-        }
-
-        /* Navigeringslogik för förhandsvisning */
-        #page-cv { display: none; }
-        .active { display: block !important; }
-
-        /* --- STARTSIDA STYLE --- */
-        .home-container {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             min-height: 100vh;
-            padding: 20px;
         }
 
-        .home-card {
-            max-width: 700px;
-            background: white;
-            padding: 60px 40px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        header {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .nav-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .nav-card {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .nav-card i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .nav-card h2 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .nav-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .ai-section {
+            margin-top: 4rem;
+            padding: 2rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 1rem;
+            border: 1px dashed var(--primary-color);
+        }
+
+        .ai-section h2 {
+            margin-bottom: 1rem;
             text-align: center;
         }
 
-        .home-card h1 { font-size: 3.5rem; color: var(--primary-green); margin-bottom: 10px; }
-        .subtitle { font-size: 1.2rem; color: var(--accent-red); text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 30px; }
-        .home-card p { font-size: 1.2rem; margin-bottom: 40px; line-height: 1.6; }
-
-        .cta-button {
-            display: inline-block;
-            padding: 18px 40px;
-            background-color: var(--primary-green);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            font-size: 1.1rem;
-            transition: 0.3s;
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
         }
-        .cta-button:hover { background-color: var(--dark-green); transform: translateY(-3px); }
 
-        /* --- CV STYLE --- */
-        .cv-wrapper {
-            max-width: 950px;
-            margin: 40px auto;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        /* Enkel CSS-ikon ersättning */
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            margin-bottom: 1rem;
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
         }
 
-        .sidebar { flex: 1; min-width: 300px; background-color: var(--primary-green); color: white; padding: 40px; }
-        .sidebar h2 { color: var(--gold); font-size: 1.2rem; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid rgba(251, 192, 45, 0.3); }
-        
-        .main-content { flex: 2; min-width: 400px; padding: 50px; background: white; }
-        .header-section h1 { font-size: 3rem; color: var(--primary-green); margin-bottom: 10px; }
-        .header-section p { color: var(--accent-red); font-weight: bold; text-transform: uppercase; }
-
-        .profile-box { background-color: var(--bg-light); padding: 25px; border-radius: 15px; border-left: 5px solid var(--gold); margin: 30px 0; font-style: italic; }
-
-        .experience-item { margin-bottom: 30px; }
-        .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .exp-title { font-weight: bold; font-size: 1.2rem; }
-        .exp-date { font-size: 0.85rem; background: #eee; padding: 2px 10px; border-radius: 10px; }
-        .status-badge { background: var(--primary-green); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; }
-
-        .reference-footer { margin-top: 50px; text-align: center; padding: 20px; background: var(--bg-light); border-radius: 10px; color: var(--dark-green); font-weight: bold; }
-
-        @media (max-width: 768px) { .cv-wrapper { flex-direction: column; } }
+        @media (max-width: 640px) {
+            h1 { font-size: 2.2rem; }
+            header { padding: 2rem 1rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- STARTSIDA -->
-    <div id="page-home" class="home-container active">
-        <div class="home-card">
-            <h1>Mohamed Ahmed</h1>
-            <div class="subtitle">Pedagogisk Ledare & Serviceprofil</div>
-            <p>Välkommen till min professionella digitala profil. Jag är en driven individ med fokus på kvalitet, ansvar och mellanmänskliga relationer.</p>
-            <button class="cta-button" onclick="showPage('cv')">Se mitt fullständiga CV</button>
+    <header>
+        <h1>Välkommen till wizzking360</h1>
+        <p class="subtitle">Min personliga plattform för kreativitet, kod och framtida AI-projekt.</p>
+    </header>
+
+    <main>
+        <div class="nav-container">
+            <!-- Länk till CV -->
+            <a href="cv.html" class="nav-card">
+                <div class="icon-circle">CV</div>
+                <h2>Mitt CV</h2>
+                <p>Läs om min utbildning, mina erfarenheter och de tekniska färdigheter jag besitter.</p>
+            </a>
+
+            <!-- Länk till Gymnasiearbete -->
+            <a href="gymnasiearbete.html" class="nav-card">
+                <div class="icon-circle">GA</div>
+                <h2>Gymnasiearbete</h2>
+                <p>Utforska mitt fördjupningsarbete och de tekniska lösningar jag utvecklat under min studietid.</p>
+            </a>
         </div>
-    </div>
 
-    <!-- CV SIDA -->
-    <div id="page-cv">
-        <div style="max-width: 950px; margin: 20px auto;">
-            <button onclick="showPage('home')" style="background: none; border: none; color: var(--primary-green); font-weight: bold; cursor: pointer;">← Tillbaka</button>
-        </div>
-        <div class="cv-wrapper">
-            <aside class="sidebar">
-                <h2>Kontakt</h2>
-                <p><strong>Adress:</strong> Osbygatan 16b, Malmö</p>
-                <p><strong>Tel:</strong> +46 73-524 44 03</p>
-                <p><strong>E-post:</strong> mohamedastur14@gmail.com</p>
-                
-                <h2 style="margin-top:40px">Expertis</h2>
-                <p>✦ Pedagogiskt ledarskap</p>
-                <p>✦ Social intelligens</p>
-                <p>✦ Operativ problemlösning</p>
-                <p>✦ Hög ansvarskänsla</p>
-                
-                <h2 style="margin-top:40px">Språk</h2>
-                <p>Svenska, Engelska, Somaliska</p>
-            </aside>
+        <!-- Sektion för framtida projekt -->
+        <section class="ai-section">
+            <h2>AI & Framtida Projekt</h2>
+            <p style="text-align: center; color: #94a3b8;">
+                Här kommer jag att publicera mina experiment inom maskininlärning och artificiell intelligens. 
+                Håll utkik efter uppdateringar!
+            </p>
+        </section>
+    </main>
 
-            <main class="main-content">
-                <div class="header-section">
-                    <h1>Mohamed Ahmed</h1>
-                    <p>Pedagogisk Ledare & Kundfokuserad Serviceprofil</p>
-                </div>
+    <footer>
+        <p>&copy; 2024 wizzking360. Skapad med passion för webbutveckling.</p>
+    </footer>
 
-                <div class="profile-box">
-                    "Jag är en driven och lösningsorienterad person med en stark förmåga att skapa trygghet och leverera högsta kvalitet..."
-                </div>
-
-                <h3 style="color:var(--primary-green); border-bottom: 1px solid #eee; margin-bottom: 15px;">Arbetslivserfarenhet</h3>
-                
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-title">Medarbetare inom omsorg</span>
-                        <span class="exp-date">2024-07 – Pågående <span class="status-badge">Aktuell</span></span>
-                    </div>
-                    <span style="color:var(--accent-red)">Malmö stad, Tygelsjö Havsbris</span>
-                </div>
-
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-title">Personlig assistent</span>
-                        <span class="exp-date">2023-08 – Pågående <span class="status-badge">Aktuell</span></span>
-                    </div>
-                    <span style="color:var(--accent-red)">Privat regi</span>
-                </div>
-
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-title">Butikskonsult / Servicebiträde</span>
-                        <span class="exp-date">2023-02 – 2024-09</span>
-                    </div>
-                    <span style="color:var(--accent-red)">Netto Butik, Köpenhamn</span>
-                </div>
-
-                <h3 style="color:var(--primary-green); border-bottom: 1px solid #eee; margin-top: 30px; margin-bottom: 15px;">Utbildning</h3>
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-title">Barn- och fritidsprogrammet</span>
-                        <span class="exp-date">2023-08 – 2026-06</span>
-                    </div>
-                    <span style="color:var(--accent-red)">Praktiska Gymnasiet Malmö</span>
-                </div>
-
-                <footer class="reference-footer">
-                    <span>✦</span> Referenser lämnas gärna vid personlig kontakt.
-                </footer>
-            </main>
-        </div>
-    </div>
-
-    <script>
-        function showPage(pageId) {
-            document.getElementById('page-home').classList.remove('active');
-            document.getElementById('page-cv').classList.remove('active');
-            document.getElementById('page-' + pageId).classList.add('active');
-            window.scrollTo(0,0);
-        }
-    </script>
 </body>
 </html>
