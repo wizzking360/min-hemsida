@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gissa Spelaren - Fotbollsquiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .option-btn {
+            transition: all 0.2s ease;
+        }
+        .option-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <div id="game-container" class="bg-slate-800 p-8 rounded-2xl shadow-2xl max-w-md w-full border border-slate-700">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-blue-400 mb-2">Gissa Spelaren!</h1>
+            <p class="text-slate-400">Välj rätt spelare baserat på ledtrådarna.</p>
+        </div>
+
+        <!-- Statistik -->
+        <div class="flex justify-between mb-6 text-sm font-semibold uppercase tracking-wider">
+            <span id="score-display" class="text-green-400">Poäng: 0</span>
+            <span id="streak-display" class="text-orange-400">Streak: 0</span>
+        </div>
+
+        <!-- Ledtrådar -->
+        <div id="hint-container" class="space-y-4 mb-8">
+            <div class="bg-slate-700/50 p-4 rounded-xl border-l-4 border-blue-500">
+                <span class="block text-xs text-slate-400 uppercase">Nationalitet</span>
+                <span id="hint-nation" class="text-lg font-semibold">-</span>
+            </div>
+            <div class="bg-slate-700/50 p-4 rounded-xl border-l-4 border-purple-500">
+                <span class="block text-xs text-slate-400 uppercase">Nuvarande Klubb</span>
+                <span id="hint-club" class="text-lg font-semibold">-</span>
+            </div>
+            <div class="bg-slate-700/50 p-4 rounded-xl border-l-4 border-green-500">
+                <span class="block text-xs text-slate-400 uppercase">Position</span>
+                <span id="hint-pos" class="text-lg font-semibold">-</span>
+            </div>
+        </div>
+
+        <!-- Alternativ (Knappar) -->
+        <div id="options-container" class="grid grid-cols-1 gap-3 mb-6">
+            <!-- Knapparna genereras av JavaScript -->
+        </div>
+
+        <div class="space-y-4">
+            <button onclick="nextPlayer()" class="w-full bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 rounded-lg transition-colors text-sm">
+                Hoppa över
+            </button>
+        </div>
+
+        <!-- Feedback Meddelande -->
+        <div id="feedback" class="mt-6 text-center font-bold hidden"></div>
+    </div>
+
+    <script>
+        const players = [
+            { name: "Erling Haaland", nation: "Norge", club: "Manchester City", pos: "Anfallare" },
+            { name: "Kylian Mbappe", nation: "Frankrike", club: "Real Madrid", pos: "Anfallare" },
+            { name: "Kevin De Bruyne", nation: "Belgien", club: "Manchester City", pos: "Mittfältare" },
+            { name: "Jude Bellingham", nation: "England", club: "Real Madrid", pos: "Mittfältare" },
+            { name: "Virgil van Dijk", nation: "Nederländerna", club: "Liverpool", pos: "Back" },
+            { name: "Mohamed Salah", nation: "Egypten", club: "Liverpool", pos: "Anfallare" },
+            { name: "Viktor Gyökeres", nation: "Sverige", club: "Sporting CP", pos: "Anfallare" },
+            { name: "Alexander Isak", nation: "Sverige", club: "Newcastle", pos: "Anfallare" },
+            { name: "Dejan Kulusevski", nation: "Sverige", club: "Tottenham", pos: "Mittfältare" },
+            { name: "Harry Kane", nation: "England", club: "Bayern München", pos: "Anfallare" },
+            { name: "Lamine Yamal", nation: "Spanien", club: "Barcelona", pos: "Anfallare" },
+            { name: "Vinicius Junior", nation: "Brasilien", club: "Real Madrid", pos: "Anfallare" },
+            { name: "Lionel Messi", nation: "Argentina", club: "Inter Miami", pos: "Anfallare" },
+            { name: "Cristiano Ronaldo", nation: "Portugal", club: "Al-Nassr", pos: "Anfallare" },
+            { name: "Bukayo Saka", nation: "England", club: "Arsenal", pos: "Mittfältare" },
+            { name: "Rodri", nation: "Spanien", club: "Manchester City", pos: "Mittfältare" },
+            { name: "Alphonso Davies", nation: "Kanada", club: "Bayern München", pos: "Back" },
+            { name: "Robert Lewandowski", nation: "Polen", club: "Barcelona", pos: "Anfallare" },
+            { name: "Luka Modric", nation: "Kroatien", club: "Real Madrid", pos: "Mittfältare" },
+            { name: "Antoine Griezmann", nation: "Frankrike", club: "Atletico Madrid", pos: "Anfallare" }
+        ];
+
+        let currentPlayer = {};
+        let score = 0;
+        let streak = 0;
+        let lastPlayerName = "";
+        let canGuess = true;
+
+        function initGame() {
+            nextPlayer();
+        }
+
+        function nextPlayer() {
+            canGuess = true;
+            let randomIndex;
+            let selectedPlayer;
+
+            // Undvik samma spelare två gånger i rad
+            do {
+                randomIndex = Math.floor(Math.random() * players.length);
+                selectedPlayer = players[randomIndex];
+            } while (selectedPlayer.name === lastPlayerName && players.length > 1);
+
+            currentPlayer = selectedPlayer;
+            lastPlayerName = currentPlayer.name;
+            
+            // Uppdatera UI ledtrådar
+            document.getElementById('hint-nation').innerText = currentPlayer.nation;
+            document.getElementById('hint-club').innerText = currentPlayer.club;
+            document.getElementById('hint-pos').innerText = currentPlayer.pos;
+            document.getElementById('feedback').classList.add('hidden');
+
+            generateOptions();
+        }
+
+        // En mer effektiv blandningsfunktion (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateOptions() {
+            const container = document.getElementById('options-container');
+            container.innerHTML = "";
+
+            // Skapa en lista med alternativ (rätt svar + 3 unika slumpmässiga)
+            let options = [currentPlayer.name];
+            
+            while (options.length < 4) {
+                let randomP = players[Math.floor(Math.random() * players.length)].name;
+                if (!options.includes(randomP)) {
+                    options.push(randomP);
+                }
+            }
+
+            // Använd den nya blandningsfunktionen för att sprida ut det rätta svaret
+            shuffleArray(options);
+
+            // Skapa knapparna i slumpmässig ordning
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.innerText = option;
+                btn.className = "option-btn w-full bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left px-4 py-3 rounded-xl font-medium transition-all hover:border-blue-500 focus:outline-none";
+                btn.onclick = () => checkAnswer(option, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedName, btnElement) {
+            if (!canGuess) return;
+            canGuess = false;
+
+            const allButtons = document.querySelectorAll('.option-btn');
+            
+            if (selectedName === currentPlayer.name) {
+                score += 10;
+                streak += 1;
+                btnElement.classList.replace('bg-slate-700', 'bg-green-600');
+                btnElement.classList.add('border-green-400');
+                showFeedback("Snyggt! Rätt svar.", "text-green-400");
+                updateStats();
+                setTimeout(nextPlayer, 1200);
+            } else {
+                streak = 0;
+                btnElement.classList.replace('bg-slate-700', 'bg-red-600');
+                btnElement.classList.add('border-red-400');
+                
+                // Markera det rätta alternativet så man lär sig
+                allButtons.forEach(btn => {
+                    if (btn.innerText === currentPlayer.name) {
+                        btn.classList.add('bg-green-600/40', 'border-green-400');
+                    }
+                });
+
+                showFeedback(`Fel! Det var ${currentPlayer.name}.`, "text-red-400");
+                updateStats();
+                setTimeout(nextPlayer, 2000);
+            }
+        }
+
+        function showFeedback(text, colorClass) {
+            const feedbackEl = document.getElementById('feedback');
+            feedbackEl.innerText = text;
+            feedbackEl.className = `mt-6 text-center font-bold ${colorClass}`;
+            feedbackEl.classList.remove('hidden');
+        }
+
+        function updateStats() {
+            document.getElementById('score-display').innerText = `Poäng: ${score}`;
+            document.getElementById('streak-display').innerText = `Streak: ${streak}`;
+        }
+
+        window.onload = initGame;
+    </script>
+</body>
+</html>
