@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wizzking360 | Portfolio</title>
+    <title>Mohamed Muhumed | Portfolio</title>
     <style>
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #3b82f6;
-            --bg-color: #0f172a;
+            /* Liverpool FC inspirerade färger */
+            --primary-color: #C8102E; /* Den klassiska röda */
+            --secondary-color: #f1f5f9; /* Vit för textkontrast */
+            --accent-green: #00B2A9; /* Den gröna färgen från Liver Bird-detaljer */
+            --bg-color: #111111; /* Djup svart/grå bakgrund */
             --text-color: #f1f5f9;
-            --card-bg: #1e293b;
+            --card-bg: #1a1a1a;
+            --card-border: #333333;
         }
 
         * {
@@ -32,20 +35,23 @@
         header {
             padding: 4rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            /* Gradient från Liverpool-röd till en mörkare ton */
+            background: linear-gradient(135deg, #C8102E 0%, #111111 100%);
+            border-bottom: 4px solid var(--accent-green);
         }
 
         h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(to right, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #94a3b8;
+            color: #dddddd;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -72,8 +78,8 @@
             text-align: center;
             text-decoration: none;
             color: var(--text-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 1px solid #334155;
+            transition: all 0.3s ease;
+            border: 1px solid var(--card-border);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -82,19 +88,15 @@
 
         .nav-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(200, 16, 46, 0.4);
             border-color: var(--primary-color);
-        }
-
-        .nav-card i {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
+            background-color: #222;
         }
 
         .nav-card h2 {
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            color: var(--primary-color); /* Namnen på korten blir röda */
         }
 
         .nav-card p {
@@ -105,7 +107,7 @@
         .ai-section {
             margin-top: 4rem;
             padding: 2rem;
-            background-color: rgba(37, 99, 235, 0.1);
+            background-color: rgba(200, 16, 46, 0.05);
             border-radius: 1rem;
             border: 1px dashed var(--primary-color);
         }
@@ -113,6 +115,7 @@
         .ai-section h2 {
             margin-bottom: 1rem;
             text-align: center;
+            color: var(--primary-color);
         }
 
         footer {
@@ -120,13 +123,14 @@
             padding: 2rem;
             color: #64748b;
             font-size: 0.9rem;
+            border-top: 1px solid #222;
         }
 
-        /* Enkel CSS-ikon ersättning */
         .icon-circle {
             width: 60px;
             height: 60px;
             background: var(--primary-color);
+            color: white;
             border-radius: 50%;
             margin-bottom: 1rem;
             display: flex;
@@ -134,50 +138,54 @@
             justify-content: center;
             font-weight: bold;
             font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         @media (max-width: 640px) {
             h1 { font-size: 2.2rem; }
-            header { padding: 2rem 1rem; }
+            header { padding: 3rem 1rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Välkommen till wizzking360</h1>
-        <p class="subtitle">Min personliga plattform för kreativitet, kod och framtida AI-projekt.</p>
+        <h1>Mohamed Muhumed</h1>
+        <p class="subtitle">"You'll Never Walk Alone" – Min plattform för kod, spel och framtida AI-projekt.</p>
     </header>
 
     <main>
         <div class="nav-container">
-            <!-- Länk till CV -->
             <a href="cv.html" class="nav-card">
                 <div class="icon-circle">CV</div>
                 <h2>Mitt CV</h2>
                 <p>Läs om min utbildning, mina erfarenheter och de tekniska färdigheter jag besitter.</p>
             </a>
 
-            <!-- Länk till Gymnasiearbete -->
+            <a href="games.html" class="nav-card">
+                <div class="icon-circle">🎮</div>
+                <h2>Mina Spel</h2>
+                <p>Kolla in de spel och interaktiva projekt jag har skapat.</p>
+            </a>
+
             <a href="gymnasiearbete.html" class="nav-card">
                 <div class="icon-circle">GA</div>
                 <h2>Gymnasiearbete</h2>
-                <p>Utforska mitt fördjupningsarbete och de tekniska lösningar jag utvecklat under min studietid.</p>
+                <p>Utforska mitt fördjupningsarbete och de tekniska lösningar jag utvecklat.</p>
             </a>
         </div>
 
-        <!-- Sektion för framtida projekt -->
         <section class="ai-section">
             <h2>AI & Framtida Projekt</h2>
             <p style="text-align: center; color: #94a3b8;">
                 Här kommer jag att publicera mina experiment inom maskininlärning och artificiell intelligens. 
-                Håll utkik efter uppdateringar!
+                Sidan är under ständig utveckling!
             </p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 wizzking360. Skapad med passion för webbutveckling.</p>
+        <p>&copy; 2024 Mohamed Muhumed. Skapad med passion för webbutveckling och LFC.</p>
     </footer>
 
 </body>
