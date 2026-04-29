@@ -15,11 +15,7 @@
             --bg-light: #f8f9fa;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Garamond', Georgia, serif;
@@ -41,7 +37,7 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* Sidebar styling */
+        /* Sidopanel */
         .sidebar {
             flex: 1;
             min-width: 300px;
@@ -52,51 +48,27 @@
 
         .sidebar h2 {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-bottom: 1px solid rgba(251, 192, 45, 0.3);
             padding-bottom: 5px;
         }
 
-        .contact-item {
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
+        .contact-item { margin-bottom: 15px; font-size: 0.95rem; }
+        .contact-item strong { display: block; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; }
 
-        .contact-item strong {
-            display: block;
-            color: var(--gold);
-            font-size: 0.8rem;
-        }
+        .skill-list { list-style: none; margin-bottom: 30px; }
+        .skill-list li { margin-bottom: 8px; display: flex; align-items: center; font-size: 0.95rem; }
+        .skill-list li::before { content: "✦"; margin-right: 10px; color: var(--gold); }
 
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .skill-list li::before {
-            content: "✦";
-            margin-right: 10px;
-            color: var(--gold);
-        }
-
-        /* Main content styling */
+        /* Huvudinnehåll */
         .main-content {
             flex: 2;
             min-width: 400px;
             padding: 50px;
             background: white;
-        }
-
-        .header-section {
-            margin-bottom: 40px;
         }
 
         .header-section h1 {
@@ -107,21 +79,22 @@
         }
 
         .header-section p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--accent-red);
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
+        /* Profilbox - Nu utan kursiv stil */
         .profile-box {
             background-color: var(--bg-light);
             padding: 25px;
             border-radius: 15px;
             border-left: 5px solid var(--gold);
-            margin-bottom: 40px;
-            font-style: italic;
+            margin: 40px 0;
             font-size: 1.1rem;
+            font-style: normal;
         }
 
         h3 {
@@ -140,115 +113,33 @@
             background: #eee;
         }
 
-        .experience-item {
-            margin-bottom: 30px;
-        }
+        .experience-item { margin-bottom: 25px; }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .exp-title { font-weight: bold; font-size: 1.2rem; color: var(--text-dark); }
+        .exp-date { font-family: sans-serif; font-size: 0.85rem; color: #777; background: #eee; padding: 2px 10px; border-radius: 10px; }
+        .exp-org { color: var(--accent-red); font-weight: bold; display: block; margin-bottom: 8px; }
 
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 5px;
-        }
+        .task-list { list-style: none; padding-left: 15px; }
+        .task-list li { position: relative; margin-bottom: 5px; font-size: 1rem; }
+        .task-list li::before { content: "→"; position: absolute; left: -15px; color: var(--gold); }
 
-        .exp-title {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-        }
-
-        .exp-date {
-            font-family: sans-serif;
-            font-size: 0.85rem;
-            color: #777;
-            background: #eee;
-            padding: 2px 10px;
-            border-radius: 10px;
-        }
-
-        .status-badge {
-            background-color: var(--primary-green);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            margin-left: 5px;
-            font-family: sans-serif;
-            text-transform: uppercase;
-        }
-
-        .exp-org {
-            color: var(--accent-red);
-            font-weight: bold;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .task-list {
-            list-style: none;
-            padding-left: 15px;
-        }
-
-        .task-list li {
-            position: relative;
-            margin-bottom: 5px;
-        }
-
-        .task-list li::before {
-            content: "→";
-            position: absolute;
-            left: -15px;
-            color: var(--gold);
-        }
-
-        .back-nav {
-            max-width: 950px;
-            margin: 0 auto 20px;
-        }
-
-        .back-btn {
-            text-decoration: none;
-            color: var(--primary-green);
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* Ny styling för referenssektionen */
-        .reference-footer {
-            margin-top: 50px;
-            text-align: center;
+        .footer-ref {
+            margin-top: 40px;
             padding: 20px;
-            background-color: var(--bg-light);
+            background: var(--bg-light);
+            text-align: center;
             border-radius: 10px;
-            border: 1px solid #e0e0e0;
-            color: var(--dark-green);
-            font-size: 1.1rem;
             font-weight: bold;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .reference-footer span {
-            color: var(--gold);
-            margin-right: 8px;
+            color: var(--primary-green);
         }
 
         @media (max-width: 768px) {
-            .cv-wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                min-width: 100%;
-            }
+            .cv-wrapper { flex-direction: column; }
+            .sidebar { min-width: 100%; }
         }
     </style>
 </head>
 <body>
-
-    <nav class="back-nav">
-        <a href="index.html" class="back-btn">← Tillbaka till startsidan</a>
-    </nav>
 
     <div class="cv-wrapper">
         <aside class="sidebar">
@@ -266,20 +157,27 @@
                 mohamedastur14@gmail.com
             </div>
 
-            <h2 style="margin-top: 40px;">Expertis</h2>
+            <h2 style="margin-top: 40px;">Kompetenser</h2>
             <ul class="skill-list">
-                <li>Pedagogiskt ledarskap</li>
-                <li>Social intelligens</li>
-                <li>Operativ problemlösning</li>
-                <li>Hög ansvarskänsla</li>
-                <li>Kreativt tänkande</li>
-                <li>Effektivitet & Kvalitet</li>
+                <li>Examen: Barn- och fritid (2026)</li>
+                <li>Medicindelegering</li>
+                <li>LSS-stöd & Pedagogik</li>
+                <li>Hemtjänst & Omvårdnad</li>
+                <li>Kassa- & logistikhantering</li>
             </ul>
 
-            <h2 style="margin-top: 40px;">Språk</h2>
+            <h2>Egenskaper</h2>
             <ul class="skill-list">
-                <li>Svenska</li>
-                <li>Engelska</li>
+                <li>Lugn i stressiga situationer</li>
+                <li>Förmåga att se individens behov</li>
+                <li>Hängiven och punktlig</li>
+                <li>Lätt för att samarbeta</li>
+            </ul>
+
+            <h2>Språk</h2>
+            <ul class="skill-list">
+                <li>Svenska (Flytande)</li>
+                <li>Engelska (Goda kunskaper)</li>
                 <li>Somaliska (Modersmål)</li>
             </ul>
         </aside>
@@ -287,64 +185,74 @@
         <main class="main-content">
             <header class="header-section">
                 <h1>Mohamed Ahmed</h1>
-                <p>Pedagogisk Ledare & Kundfokuserad Serviceprofil</p>
+                <p>Studerande & Omsorgsmedarbetare</p>
             </header>
 
             <div class="profile-box">
-                "Jag är en driven och lösningsorienterad person med en stark förmåga att skapa trygghet och leverera högsta kvalitet i mötet med människor. Med en positiv attityd och hög social kompetens trivs jag i roller som kräver ansvar, flexibilitet och förmågan att vara den centrala punkten – 'spindeln i nätet' – som ser till att allt fungerar fläckfritt."
+                Jag är en engagerad person med bred erfarenhet inom vård och omsorg i flera kommuner i Skåne. Genom mina studier på Barn- och fritidsprogrammet och mitt praktiska arbete inom både LSS och hemtjänst har jag utvecklat en stark pedagogisk förmåga och ett professionellt bemötande. Jag trivs med att ta ansvar och ser till att varje individ får den trygghet de behöver.
             </div>
 
             <h3>Arbetslivserfarenhet</h3>
 
             <div class="experience-item">
                 <div class="exp-header">
-                    <span class="exp-title">Medarbetare inom omsorg</span>
-                    <span class="exp-date">2024-07 – Pågående <span class="status-badge">Aktuell</span></span>
+                    <span class="exp-title">Vård- och omsorgsmedarbetare</span>
+                    <span class="exp-date">2024-07 – Pågående</span>
                 </div>
-                <span class="exp-org">Malmö stad, Tygelsjö Havsbris vårdboende</span>
+                <span class="exp-org">Malmö stad, Tygelsjö Havsbris</span>
                 <ul class="task-list">
-                    <li>Kvalificerad omvårdnad och tillsyn med fokus på individens trygghet</li>
-                    <li>Ansvar för matlagning, servering och serviceinsatser</li>
-                    <li>Säkerställande av dagliga rutiner och förflyttningar</li>
+                    <li>Kvalificerad omvårdnad och medicindelegering på vårdboende.</li>
+                    <li>Ansvar för dagliga rutiner, matlagning och social aktivering.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="exp-header">
+                    <span class="exp-title">Omvårdnad: Hemtjänst & LSS</span>
+                    <span class="exp-date">Tidigare erfarenhet</span>
+                </div>
+                <span class="exp-org">Lund, Trelleborg, Svedala & Malmö</span>
+                <ul class="task-list">
+                    <li>Arbete inom hemtjänst med fokus på självständighet och trygghet i hemmet.</li>
+                    <li>Erfarenhet av stöd enligt LSS, med ett pedagogiskt förhållningssätt.</li>
+                    <li>Vana vid att snabbt anpassa mig till olika kommunala rutiner och system.</li>
                 </ul>
             </div>
 
             <div class="experience-item">
                 <div class="exp-header">
                     <span class="exp-title">Personlig assistent</span>
-                    <span class="exp-date">2023-08 – Pågående <span class="status-badge">Aktuell</span></span>
+                    <span class="exp-date">2023-08 – Pågående</span>
                 </div>
                 <span class="exp-org">Privat regi</span>
                 <ul class="task-list">
-                    <li>Pedagogiskt stöd och vardaglig assistans till ungdomar</li>
-                    <li>Logistikansvar gällande inköp, hushåll och hälsa</li>
-                    <li>Hantering av trygghetssystem och personlig omvårdnad</li>
+                    <li>Pedagogiskt stöd och vardaglig assistans till ungdomar.</li>
+                    <li>Hantering av logistik, hushåll och personlig omvårdnad.</li>
                 </ul>
             </div>
 
             <div class="experience-item">
                 <div class="exp-header">
-                    <span class="exp-title">Butikskonsult / Servicebiträde</span>
+                    <span class="exp-title">Servicebiträde</span>
                     <span class="exp-date">2023-02 – 2024-09</span>
                 </div>
-                <span class="exp-org">Netto Butik, Köpenhamn</span>
-                <p>Arbete med kundservice i internationell miljö, kassaansvar och operativ butikslogistik under högt tempo.</p>
+                <span class="exp-org">Netto, Köpenhamn</span>
+                <p>Kundservice och butikslogistik under högt tempo i internationell miljö.</p>
             </div>
 
             <h3>Utbildning</h3>
-
             <div class="experience-item">
                 <div class="exp-header">
                     <span class="exp-title">Barn- och fritidsprogrammet</span>
                     <span class="exp-date">2023-08 – 2026-06</span>
                 </div>
                 <span class="exp-org">Praktiska Gymnasiet Malmö</span>
-                <p>Inriktning på ledarskap, pedagogik och förståelse för mänsklig utveckling och gruppdynamik.</p>
+                <p>Inriktning på pedagogiskt ledarskap, mänsklig utveckling och gruppdynamik.</p>
             </div>
 
-            <footer class="reference-footer">
-                <span>✦</span> Referenser lämnas gärna vid personlig kontakt.
-            </footer>
+            <div class="footer-ref">
+                ✦ Referenser lämnas gärna vid personlig kontakt.
+            </div>
         </main>
     </div>
 
